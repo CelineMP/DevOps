@@ -1,0 +1,28 @@
+version: '3.7'
+
+services:
+    backend:
+        build: ./BackendAPI/    # Build the BackendAPI service from the specified directory.
+        container_name: tdbackend  # Set the container name for the backend service.
+        networks:
+            - my-network  # Connect the service to the 'my-network' Docker network.
+        depends_on:
+            - database  # Ensure that the backend service starts after the 'database' service.
+
+    database:
+        build: ./Database/  # Build the Database service from the specified directory.
+        container_name: tddatabase  # Set the container name for the database service.
+        networks:
+            - my-network  # Connect the service to the 'my-network' Docker network.
+
+    httpd:
+        build: ./HTTPserver/  # Build the HTTPserver service from the specified directory.
+        ports:
+            - "8080:80"  # Map port 8080 on the host to port 80 in the container.
+        networks:
+            - my-network  # Connect the service to the 'my-network' Docker network.
+        depends_on:
+            - backend  # Ensure that the httpd service starts after the 'backend' service.
+
+networks:
+    my-network:  # Define a Docker network named 'my-network' for service communication.
