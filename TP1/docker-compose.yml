@@ -24,5 +24,15 @@ services:
         depends_on:
             - backend  # Ensure that the httpd service starts after the 'backend' service.
 
+    frontend:
+        build: ./Front/
+        container_name: tdfrontend
+        ports:
+            - "80:80"
+        networks:
+            - my-network
+        depends_on:
+            - backend
+
 networks:
     my-network:  # Define a Docker network named 'my-network' for service communication.

@@ -1,0 +1,12 @@
+---
+# tasks file for roles/frontend
+
+- name: Run Frontend
+  docker_container: 
+    name: tdfrontend
+    image: celine99/tdfront:1.0
+    networks:
+      - name: my_network
+
+
+

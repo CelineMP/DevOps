@@ -1,0 +1,10 @@
+---
+# tasks file for roles/launch-app
+
+- name: Launch App
+  docker_container:
+    name: tdbackend
+    image: celine99/tdbackend:1.0
+    networks:
+      - name: my_network
+# Launches a Docker container named 'tdbackend' using the 'celine99/tdbackend:1.0' image and connects it to the 'my_network' Docker network

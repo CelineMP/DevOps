@@ -1,0 +1,33 @@
+---
+# tasks file for roles/docker
+
+- name: Install device-mapper-persistent-data
+  yum:
+    name: device-mapper-persistent-data
+    state: latest
+# Installs device-mapper-persistent-data package.
+
+- name: Install lvm2
+  yum:
+    name: lvm2
+    state: latest
+# Installs lvm2 package.
+
+- name: add repo docker
+  command:
+    cmd: sudo yum-config-manager --add-repo=https://download.docker.com/linux/centos/docker-ce.repo
+# Adds the Docker repository for CentOS.
+
+- name: Install Docker
+  yum:
+    name: docker-ce
+    state: present
+# Installs Docker Community Edition (docker-ce) package.
+
+- name: Make sure Docker is running
+  service:
+    name: docker
+    state: started
+  tags: docker
+# Ensures the Docker service is running.
+

@@ -1,0 +1,10 @@
+---
+# tasks file for roles/launch-database
+
+- name: Create db container and connect to network
+  community.docker.docker_container:
+    name: tddatabase
+    image: celine99/tddatabase:1.0
+    networks:
+      - name: my_network
+# Creates a Docker container named 'tddatabase' using the 'celine99/tddatabase:1.0' image and connects it to the 'my_network' Docker network

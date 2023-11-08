@@ -1,0 +1,12 @@
+---
+# tasks file for roles/launch-proxy
+
+- name: Run HTTPD
+  docker_container:
+    name: httpd
+    image: celine99/tdhttp:1.0
+    ports:
+    - "80:80"
+    networks:
+    - name: my_network
+# Runs a Docker container named 'httpd' using the 'celine99/tdhttp:1.0' image, mapping port 80, and connecting it to the 'my_network' Docker network.    
